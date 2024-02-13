@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS `cities` (
   PRIMARY KEY (`id`),
   KEY `cities_state_id_foreign` (`state_id`),
   CONSTRAINT `cities_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=501 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
