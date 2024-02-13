@@ -1,0 +1,45 @@
+services:
+    mysql:
+        image: 'mysql/mysql-server:8.0'
+        container_name: database
+        ports:
+            - '3306:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: 'password'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: 'userapi_php'
+            MYSQL_USER: 'userapi'
+            MYSQL_PASSWORD: 'password'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        volumes:
+            - './mysql-data:/var/lib/mysql'
+        networks:
+            - eth0
+    nginx:
+        image: 'nginx:latest'
+        container_name: web
+        ports:
+            - '80:80'
+        volumes:
+            - './public-html:/var/www'
+            - './env/default.conf:/etc/nginx/conf.d/default.conf'
+        networks:
+            - eth0
+        links:
+            - php
+    php:
+        image: 'php-customized'
+        container_name: php
+        volumes:
+            - './public-html:/var/www'
+        networks:
+            - eth0
+    
+networks:
+    eth0:
+        driver: bridge
+#volumes:
+#    mysql-data:
+#        driver: local
+#    public-html:
+#        driver: local
