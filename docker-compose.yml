@@ -22,7 +22,7 @@ services:
             - '80:80'
         volumes:
             - './app:/var/www/userapi_php'
-            - './env/default.conf:/etc/nginx/conf.d/default.conf'
+            - './env/default.conf:/etc/nginx/conf.d/default.conf'   
         networks:
             - eth0
         links:

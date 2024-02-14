@@ -10,8 +10,18 @@ class MySQL
 
     public function __construct()
     {
-        $dsn = 'mysql:host=mysql;dbname=userapi_php';
-        $this->connection = new PDO($dsn, 'userapi', 'password');
+        $config = parse_ini_file('config.ini', true);
+
+        $hostname = $config['mysql']['hostname'];
+        $database = $config['mysql']['database'];
+        $username = $config['mysql']['username'];
+        $password = $config['mysql']['password'];
+
+        $dsn = 'mysql:host='.$hostname.';dbname='.$database;
+        $this->connection = new PDO($dsn, $username, $password);
+
+        //$dsn = 'mysql:host=mysql;dbname=userapi_php';
+        //$this->connection = new PDO($dsn, 'userapi', 'password');
     }
 
     public function select($query)
