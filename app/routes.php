@@ -1,7 +1,12 @@
 <?php
 
-use App\Controllers\UserController;
 use App\Libraries\Route;
+
+use App\Controllers\UserController;
+use App\Controllers\StateController;
+use App\Controllers\CityController;
+use App\Controllers\StreetController;
+use App\Controllers\AddressController;
 
 // Rotas de User (Usuário)
 Route::get('/api/users/:id', UserController::class, 'index');

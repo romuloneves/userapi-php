@@ -16,6 +16,15 @@ class Address
     public $created_at;
     public $updated_at;
 
+    /*
+     * Relation variables (Variáveis de relacionamentos)
+     */
+
+    public $user; 
+    public $state; 
+    public $city; 
+    public $street; 
+
     public function save()
     {
         $mysql = new MySQL;
@@ -41,13 +50,6 @@ class Address
         return $mysql->select('addresses');
     }
 
-    public static function all()
-    {
-        $mysql = new MySQL;
-
-        return $mysql->select('addresses');
-    }
-
     public static function getById($id)
     {
         $mysql = new MySQL;
@@ -56,7 +58,48 @@ class Address
 
         $self = new self;
         $self->fill($attributes);
+
+        $self->user = $self->getUser();
+        $self->state = $self->getState();
+        $self->city = $self->getCity();
+        $self->street = $self->getStreet();
+
         return $self;
+    }
+
+    public function getUser()
+    {
+        $mysql = new MySQL;
+
+        return $mysql->select('users WHERE id = '.$this->user_id);
+    }
+
+    public function getState()
+    {
+        $mysql = new MySQL;
+
+        return $mysql->select('states WHERE id = '.$this->state_id);
+    }
+
+    public function getCity()
+    {
+        $mysql = new MySQL;
+
+        return $mysql->select('cities WHERE id = '.$this->city_id);
+    }
+
+    public function getStreet()
+    {
+        $mysql = new MySQL;
+
+        return $mysql->select('streets WHERE id = '.$this->street_id);
+    }
+
+    public static function all()
+    {
+        $mysql = new MySQL;
+
+        return $mysql->select('addresses');
     }
 
     public function update($attributes)

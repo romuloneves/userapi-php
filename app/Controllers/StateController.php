@@ -38,7 +38,7 @@ class StateController
     {
         if($id)
         {
-            # Workaround para interpretar dados enviados via POST JSON
+            # Workaround para interpretar dados enviados via PUT JSON
             $data = json_decode(file_get_contents("php://input"), true);
 
             $state = State::getById($id);
@@ -52,7 +52,7 @@ class StateController
     {
         if($id)
         {
-            # Workaround para interpretar dados enviados via POST JSON
+            # Workaround para interpretar dados enviados via DELETE JSON
             $data = json_decode(file_get_contents("php://input"), true);
 
             $state = State::getById($id);
