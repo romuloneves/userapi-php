@@ -3,25 +3,32 @@
 use App\Controllers\UserController;
 use App\Libraries\Route;
 
+// Rotas de User (Usuário)
 Route::get('/api/users/:id', UserController::class, 'index');
 Route::post('/api/users', UserController::class, 'store');
 Route::put('/api/users/:id', UserController::class, 'update');
 Route::delete('/api/users/:id', UserController::class, 'destroy');
 
-//$url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-//$api_prefix = '/api';
-//
-//switch($url)
-//{
-//    //case '/':
-//    //    echo 'abc';
-//    //break;
-////
-//    //case '/adicionar':
-//    //    echo 'adicionado';
-//    //break;
-//
-//    case $api_prefix.'/users':
-//        UserController::store();
-//    break;
-//}
+// Rotas de State (Estado)
+Route::get('/api/states/:id', StateController::class, 'index');
+Route::post('/api/states', StateController::class, 'store');
+Route::put('/api/states/:id', StateController::class, 'update');
+Route::delete('/api/states/:id', StateController::class, 'destroy');
+
+// Rotas de City (Cidade)
+Route::get('/api/cities/:id', CityController::class, 'index');
+Route::post('/api/cities', CityController::class, 'store');
+Route::put('/api/cities/:id', CityController::class, 'update');
+Route::delete('/api/cities/:id', CityController::class, 'destroy');
+
+// Rotas de Street (Rua)
+Route::get('/api/streets/:id', StreetController::class, 'index');
+Route::post('/api/streets', StreetController::class, 'store');
+Route::put('/api/streets/:id', StreetController::class, 'update');
+Route::delete('/api/streets/:id', StreetController::class, 'destroy');
+
+// Rotas de Address (Endereço)
+Route::get('/api/addresses/:id', AddressController::class, 'index');
+Route::post('/api/addresses', AddressController::class, 'store');
+Route::put('/api/addresses/:id', AddressController::class, 'update');
+Route::delete('/api/addresses/:id', AddressController::class, 'destroy');
