@@ -8,6 +8,11 @@ use App\Controllers\CityController;
 use App\Controllers\StreetController;
 use App\Controllers\AddressController;
 
+
+/**
+ * Controlador de rotas onde são registradas todas as rotas da aplicação
+ */
+
 // Rotas de User (Usuário)
 Route::get('/api/users/:id', UserController::class, 'index');
 Route::post('/api/users', UserController::class, 'store');

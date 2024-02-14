@@ -22,6 +22,11 @@ class User
 
     public $addresses = []; // one-to-many relationship
 
+
+    /**
+     * Método save(): Armazena valores inicializados neste objeto ao banco da classe.
+     */
+
     public function save()
     {
         $mysql = new MySQL;
@@ -33,6 +38,13 @@ class User
         $mysql->insert($this, 'users');
     }
 
+
+    /**
+     * Método create(): Armazena valores do parâmetro de objetos $attributes ao banco da classe.
+     *
+     * @return object<mixed>
+     */
+
     public static function create($attributes)
     {
         $self = new self;
@@ -40,12 +52,26 @@ class User
         return $self->save();
     }
 
+
+    /**
+     * Método get(): Retorna collection de objetos da classe.
+     *
+     * @return object<mixed>
+     */
+
     public function get()
     {
         $mysql = new MySQL;
 
         return $mysql->select('users');
     }
+
+
+    /**
+     * Método getById(): Retorna objeto específico de acordo com o $id especificado.
+     *
+     * @return object<mixed>
+     */
 
     public static function getById($id)
     {
@@ -59,6 +85,13 @@ class User
         return $self;
     }
 
+
+    /**
+     * Método getAddresses(): Retorna o endereço relacionado de acordo com a chave $user_id e seu relacionamento.
+     *
+     * @return object<mixed>
+     */
+
     public function getAddresses()
     {
         $mysql = new MySQL;
@@ -66,12 +99,27 @@ class User
         return $mysql->select('addresses WHERE user_id = '.$this->id);
     }
 
+
+    /**
+     * Método all(): Retorna um objeto com todos os registros cadastrados.
+     *
+     * @return object<mixed>
+     */
+
     public static function all()
     {
         $mysql = new MySQL;
 
         return $mysql->select('users');
     }
+
+
+    /**
+     * Método update(): Atualiza valores armazenados a partir do parâmetro de objetos $attributes.
+     *
+     * @return object<mixed>
+     */
+
 
     public function update($attributes)
     {
@@ -85,6 +133,13 @@ class User
         return $mysql->update('users', $where, $attributes);
     }
 
+
+    /**
+     * Método delete(): Remove registros armazenados de acordo com os valores inicializados neste objeto.
+     *
+     * @return object<mixed>
+     */
+
     public function delete()
     {
         $mysql = new MySQL;
@@ -93,6 +148,11 @@ class User
 
         return $mysql->delete('users', $where);
     }
+
+
+    /**
+     * Método fill(): Preenche este objeto utilizando valores no argumento $attributes.
+     */
 
     public function fill($attributes)
     {

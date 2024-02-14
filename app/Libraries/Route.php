@@ -2,6 +2,13 @@
 
 namespace App\Libraries;
 
+
+/**
+ * Classe Route: Classe responsável por manipular todas as rotas da aplicação.
+ * Os métodos get(), post(), put() e delete() são baseados nos requests nativos do HTTP.
+ * Todos os métodos possuem a função de registrar e redirecionar as rotas para seus devidos métodos.
+ */
+
 class Route 
 {        
     public static function get($pattern, $class, $method)

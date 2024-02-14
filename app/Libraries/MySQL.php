@@ -4,9 +4,19 @@ namespace App\Libraries;
 
 use \PDO;
 
+/**
+ * Classe MySQL: Classe responsável por manipular o PHP PDO e credenciais de acesso ao MySQL.
+ * Também armazena métodos de apoio para a manipulação do banco de dados.
+ */
+
 class MySQL
 {
     private $connection;
+
+
+    /**
+     * Construtor responsável por carregar as credenciais de banco de dados na DSN do PDO.
+     */
 
     public function __construct()
     {
@@ -19,10 +29,12 @@ class MySQL
 
         $dsn = 'mysql:host='.$hostname.';dbname='.$database;
         $this->connection = new PDO($dsn, $username, $password);
-
-        //$dsn = 'mysql:host=mysql;dbname=userapi_php';
-        //$this->connection = new PDO($dsn, 'userapi', 'password');
     }
+
+
+    /**
+     * Método select(): Responsável por manipular consultas através do PDO.
+     */
 
     public function select($query)
     {
@@ -33,6 +45,12 @@ class MySQL
 
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
+
+
+    /**
+     * Método select(): Responsável por inserir registros através do PDO.
+     * Gera o INSERT se baseando na estrutura da classe recebida no parâmetro $model.
+     */
 
     public function insert($model, $table)
     {
@@ -53,6 +71,12 @@ class MySQL
         $stmt->execute();
     }
 
+
+    /**
+     * Método update(): Responsável por atualizar registros através do PDO.
+     * Gera os atributos do UPDATE através da variável $attributes e da variável $where como clausula WHERE.
+     */
+
     public function update($table, $where, $attributes)
     {
         $columns = implode('=?, ', array_keys($attributes)).'=?';
@@ -62,6 +86,11 @@ class MySQL
         
         $stmt->execute(array_values($attributes));
     }
+
+    /**
+     * Método delete(): Responsável por remover registros através do PDO.
+     * Gera o DELETE através da variável $where como clausula WHERE.
+     */
 
     public function delete($table, $where)
     {

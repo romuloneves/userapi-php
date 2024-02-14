@@ -5,6 +5,11 @@ namespace App\Models;
 use App\Libraries\MySQL;
 use \DateTime;
 
+
+/**
+ * Classe State (Estado): Armazena nomes dos estados brasileiros e suas unidades federativas.
+ */
+
 class State
 {
     protected $id;
@@ -24,12 +29,26 @@ class State
         $mysql->insert($this, 'states');
     }
 
+
+    /**
+     * Método create(): Armazena valores do parâmetro de objetos $attributes ao banco da classe.
+     *
+     * @return object<mixed>
+     */
+
     public static function create($attributes)
     {
         $self = new self;
         $self->fill($attributes);
         return $self->save();
     }
+
+
+    /**
+     * Método get(): Retorna collection de objetos da classe.
+     *
+     * @return object<mixed>
+     */
 
     public function get()
     {
@@ -38,12 +57,26 @@ class State
         return $mysql->select('states');
     }
 
+
+    /**
+     * Método all(): Retorna um objeto com todos os registros cadastrados.
+     *
+     * @return object<mixed>
+     */
+
     public static function all()
     {
         $mysql = new MySQL;
 
         return $mysql->select('states');
     }
+
+
+    /**
+     * Método getById(): Retorna objeto específico de acordo com o $id especificado.
+     *
+     * @return object<mixed>
+     */
 
     public static function getById($id)
     {
@@ -55,6 +88,13 @@ class State
         $self->fill($attributes);
         return $self;
     }
+
+
+    /**
+     * Método update(): Atualiza valores armazenados a partir do parâmetro de objetos $attributes.
+     *
+     * @return object<mixed>
+     */
 
     public function update($attributes)
     {
@@ -68,6 +108,13 @@ class State
         return $mysql->update('states', $where, $attributes);
     }
 
+
+    /**
+     * Método delete(): Remove registros armazenados de acordo com os valores inicializados neste objeto.
+     *
+     * @return object<mixed>
+     */
+
     public function delete()
     {
         $mysql = new MySQL;
@@ -76,6 +123,11 @@ class State
 
         return $mysql->delete('states', $where);
     }
+
+
+    /**
+     * Método fill(): Preenche este objeto utilizando valores no argumento $attributes.
+     */
 
     public function fill($attributes)
     {

@@ -5,6 +5,11 @@ namespace App\Models;
 use App\Libraries\MySQL;
 use \DateTime;
 
+
+/**
+ * Classe Street (Rua): Armazena nomes de ruas e sua cidade relacionada.
+ */
+
 class Street
 {
     protected $id;
@@ -12,6 +17,11 @@ class Street
     public $name;
     public $created_at;
     public $updated_at;
+
+
+    /**
+     * Método save(): Armazena valores inicializados neste objeto ao banco da classe.
+     */
 
     public function save()
     {
@@ -24,12 +34,26 @@ class Street
         $mysql->insert($this, 'streets');
     }
 
+
+    /**
+     * Método create(): Armazena valores do parâmetro de objetos $attributes ao banco da classe.
+     *
+     * @return object<mixed>
+     */
+
     public static function create($attributes)
     {
         $self = new self;
         $self->fill($attributes);
         return $self->save();
     }
+
+
+    /**
+     * Método get(): Retorna collection de objetos da classe.
+     *
+     * @return object<mixed>
+     */
 
     public function get()
     {
@@ -38,12 +62,26 @@ class Street
         return $mysql->select('streets');
     }
 
+
+    /**
+     * Método all(): Retorna um objeto com todos os registros cadastrados.
+     *
+     * @return object<mixed>
+     */
+
     public static function all()
     {
         $mysql = new MySQL;
 
         return $mysql->select('streets');
     }
+
+
+    /**
+     * Método getById(): Retorna objeto específico de acordo com o $id especificado.
+     *
+     * @return object<mixed>
+     */
 
     public static function getById($id)
     {
@@ -55,6 +93,13 @@ class Street
         $self->fill($attributes);
         return $self;
     }
+
+
+    /**
+     * Método update(): Atualiza valores armazenados a partir do parâmetro de objetos $attributes.
+     *
+     * @return object<mixed>
+     */
 
     public function update($attributes)
     {
@@ -68,6 +113,13 @@ class Street
         return $mysql->update('streets', $where, $attributes);
     }
 
+
+    /**
+     * Método delete(): Remove registros armazenados de acordo com os valores inicializados neste objeto.
+     *
+     * @return object<mixed>
+     */
+
     public function delete()
     {
         $mysql = new MySQL;
@@ -76,6 +128,11 @@ class Street
 
         return $mysql->delete('streets', $where);
     }
+
+
+    /**
+     * Método fill(): Preenche este objeto utilizando valores no argumento $attributes.
+     */
 
     public function fill($attributes)
     {
