@@ -55,12 +55,15 @@ class User
 
         $self = new self;
         $self->fill($attributes);
+        $self->addresses = $self->getAddresses();
         return $self;
     }
 
     public function getAddresses()
     {
-        
+        $mysql = new MySQL;
+
+        return $mysql->select('addresses WHERE user_id = '.$this->id);
     }
 
     public static function all()
