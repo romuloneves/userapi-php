@@ -42,7 +42,7 @@ class UserController
             $data = json_decode(file_get_contents("php://input"), true);
 
             $user = User::getById($id);
-            User::update($user, $data);
+            $user->update($data);
 
             die(json_encode(['200 OK']));
         }
@@ -56,7 +56,7 @@ class UserController
             $data = json_decode(file_get_contents("php://input"), true);
 
             $user = User::getById($id);
-            User::delete($user);
+            $user->delete();
 
             die(json_encode(['200 OK']));
         }

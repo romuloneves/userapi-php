@@ -7,6 +7,7 @@ use \DateTime;
 
 class Street
 {
+    protected $id;
     public $city_id;
     public $name;
     public $created_at;
@@ -48,23 +49,30 @@ class Street
     {
         $mysql = new MySQL;
 
-        return $mysql->select('streets WHERE id = '.$id)[0];
+        $attributes = $mysql->select('streets WHERE id = '.$id)[0];
+
+        $self = new self;
+        $self->fill($attributes);
+        return $self;
     }
 
-    public static function update($street, $attributes)
+    public function update($attributes)
     {
         $mysql = new MySQL;
+        $datetime = new DateTime;
 
-        $where = 'id = '.$street->id;
+        $attributes['updated_at'] = $datetime->format('Y-m-d H:i:s');
+
+        $where = 'id = '.$this->id;
 
         return $mysql->update('streets', $where, $attributes);
     }
 
-    public static function delete($street)
+    public function delete()
     {
         $mysql = new MySQL;
 
-        $where = 'id = '.$street->id;
+        $where = 'id = '.$this->id;
 
         return $mysql->delete('streets', $where);
     }

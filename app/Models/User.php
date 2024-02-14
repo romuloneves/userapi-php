@@ -7,6 +7,7 @@ use \DateTime;
 
 class User
 {
+    protected $id;
     public $first_name;
     public $last_name;
     public $phone_number;
@@ -14,6 +15,12 @@ class User
     public $password;
     public $created_at;
     public $updated_at;
+
+    /*
+     * Relation variables (Variáveis de relacionamentos)
+     */
+
+    public $addresses = []; // one-to-many relationship
 
     public function save()
     {
@@ -40,6 +47,22 @@ class User
         return $mysql->select('users');
     }
 
+    public static function getById($id)
+    {
+        $mysql = new MySQL;
+
+        $attributes = $mysql->select('users WHERE id = '.$id)[0];
+
+        $self = new self;
+        $self->fill($attributes);
+        return $self;
+    }
+
+    public function getAddresses()
+    {
+        
+    }
+
     public static function all()
     {
         $mysql = new MySQL;
@@ -47,27 +70,23 @@ class User
         return $mysql->select('users');
     }
 
-    public static function getById($id)
+    public function update($attributes)
     {
         $mysql = new MySQL;
+        $datetime = new DateTime;
 
-        return $mysql->select('users WHERE id = '.$id)[0];
-    }
+        $attributes['updated_at'] = $datetime->format('Y-m-d H:i:s');
 
-    public static function update($user, $attributes)
-    {
-        $mysql = new MySQL;
-
-        $where = 'id = '.$user->id;
+        $where = 'id = '.$this->id;
 
         return $mysql->update('users', $where, $attributes);
     }
 
-    public static function delete($user)
+    public function delete()
     {
         $mysql = new MySQL;
 
-        $where = 'id = '.$user->id;
+        $where = 'id = '.$this->id;
 
         return $mysql->delete('users', $where);
     }
