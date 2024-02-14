@@ -1,6 +1,6 @@
 # User API Laravel
 
-Trata-se de uma API desenvolvida utilizando as tecnologias do PHP 8, cujo o objetivo é interagir com usuários, endereços, estados e cidades armazenados em banco de dados. O projeto aborda uma maneira fácil porém consistente de organizar uma aplicação por MVC (Model, View, Controller) no PHP nativo, distribuindo blocos de código em endpoints voltados para API seguindo a lógica do CRUD. Por se tratar de uma API, foram definidos alguns endpoints para facilitar as requisições
+Trata-se de uma API desenvolvida utilizando as tecnologias do PHP 8, cujo o objetivo é interagir com usuários, endereços, estados e cidades armazenados em banco de dados. O projeto aborda uma maneira fácil porém consistente de organizar uma aplicação por MVC (Model, View, Controller) no PHP nativo, distribuindo blocos de código em endpoints voltados para API seguindo a lógica do CRUD. Por se tratar de uma API, foram definidos alguns endpoints para facilitar as requisições.
 
 ## Endpoints
 
